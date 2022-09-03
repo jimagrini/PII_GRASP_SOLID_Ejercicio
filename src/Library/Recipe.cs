@@ -42,18 +42,5 @@ namespace Full_GRASP_And_SOLID.Library
         {
             this.steps.Remove(step);
         }
-
-        public string RecipeMaker() 
-        {
-            StringBuilder stringRecipe = new StringBuilder($"Receta de {FinalProduct.Description} \n");
-            foreach (Step step in this.steps)
-            {
-                stringRecipe.Append($"{step.Quantity} de '{step.Input.Description}', utilizando '{step.Equipment.Description}' durante un lapso de {step.Time} segundos\n");
-            }
-            return stringRecipe.ToString();
-        }
     }
-
-
-
 }

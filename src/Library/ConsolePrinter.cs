@@ -4,6 +4,7 @@
 // </copyright>
 //---------------------------------------------------------------------------------------
 using System;
+using System.Text;
 namespace Full_GRASP_And_SOLID.Library
 {
     /* Aqui creo una clase nueva ConsolePrinter que respeta
@@ -13,9 +14,14 @@ namespace Full_GRASP_And_SOLID.Library
     */
     public class ConsolePrinter
     {
-        public void Printer(Recipe recipe)
+        public ConsolePrinter(Recipe recipe)
         {
-            Console.WriteLine(recipe.RecipeMaker());
+            StringBuilder stringRecipe = new StringBuilder($"Receta de {recipe.FinalProduct.Description} \n");
+            foreach(Step Recipe in recipe.steps)
+            {
+                stringRecipe.Append($"{Recipe.Quantity} de '{Recipe.Input.Description}', utilizando '{Recipe.Equipment.Description}' durante un lapso de {Recipe.Time} segundos\n");
+            }
+            Console.WriteLine(stringRecipe.ToString());
         }
            
     }
