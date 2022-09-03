@@ -19,7 +19,7 @@ namespace Full_GRASP_And_SOLID.Library
             {
                 foreach (Step step in this.steps) 
                 {
-                    ProductionCost+= (step.Input.UnitCost * step.Quantity) + (step.Time * step.Equipment.HourlyCost);
+                    ProductionCost+= (step.Input.UnitCost*step.Quantity)+(step.Time*step.Equipment.HourlyCost);
                 }
             } 
             Console.WriteLine($"El costo total es ${ProductionCost}");
@@ -27,9 +27,10 @@ namespace Full_GRASP_And_SOLID.Library
         }
         /*
         Respeta SRP debido a que la unica razón de cambio sería la receta misma
-        La clase Recipe es la experta debido a que tiene toda la información necesaria para calcular el costo de produccion total
+        La clase Recipe es la experta debido a que tiene toda la información necesaria para calcular el costo de produccion total,
+        contiene el cuerpo de la receta también pero ya no se encarga de imprimirlo.
         */
-        private ArrayList steps = new ArrayList();
+        public ArrayList steps = new ArrayList();
 
         public Product FinalProduct { get; set; }
 
@@ -47,7 +48,7 @@ namespace Full_GRASP_And_SOLID.Library
             StringBuilder stringRecipe = new StringBuilder($"Receta de {FinalProduct.Description} \n");
             foreach (Step step in this.steps)
             {
-                stringRecipe.Append($"{step.Quantity} de '{step.Input.Description}' " +  $"utilizando '{step.Equipment.Description}' durante un lapso de {step.Time} segundos\n");
+                stringRecipe.Append($"{step.Quantity} de '{step.Input.Description}', utilizando '{step.Equipment.Description}' durante un lapso de {step.Time} segundos\n");
             }
             return stringRecipe.ToString();
         }
